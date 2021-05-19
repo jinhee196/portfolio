@@ -12,7 +12,9 @@
   --color-light-grey: #7c7979;
   --color-blue: #73aace;
   --color-yellow: #fff7d1;
-  --color-orange: #feb546;
+  --color-light-orage: #fff3e0;
+  --color-orange: #ffb74d;
+  --color-dark-orange: #ef6c00;
   --color-black: #000000;
 
   /* Font size */
@@ -95,7 +97,7 @@ p {
 #navbar {
   display: flex;
   justify-content: space-between;
-  background-color: var(--color-pink);
+  background-color: var(--color-orange);
   align-items: center;
   color: var(--color-white);
   padding: 16px;
@@ -132,7 +134,7 @@ p {
 
 /* Home */
 #home {
-  background: url(img/1.png) no-repeat center/cover;
+  background-color: var(--color-light-orage);
   padding: 40px;
   text-align: center;
 }
@@ -150,10 +152,9 @@ p {
   width: 90%;
   margin-top: -20px;
 }
-
-.home__title,
+.home__avatar:hover .home__title,
 .home__description {
-  color: var(--color-white);
+  color: var(--color-grey);
 }
 
 .home__contact {
@@ -163,7 +164,7 @@ p {
   padding: 8px 12px;
   border: 2px solid var(--color-white);
   border-radius: var(--size-border-radius);
-  color: var(--color-white);
+  color: var(--color-grey);
 }
 
 /* Section common */
@@ -202,7 +203,7 @@ p {
 }
 
 .major__icon:hover i {
-  color: var(--color-pink);
+  color: var(--color-orange);
   transform: scale(1.1) rotate(-30deg);
 }
 .major__title,
@@ -299,11 +300,11 @@ p {
 }
 .category__btn.active,
 .category__btn:hover {
-  background-color: var(--color-pink);
+  background-color: var(--color-orange);
   color: var(--color-white);
 }
 .category__count {
-  background-color: var(--color-orange);
+  background-color: var(--color-dark-orange);
   border-radius: 50%;
   color: var(--color-white);
   width: 24px;
@@ -375,4 +376,43 @@ p {
   margin-left: -12px;
   margin-top: 8px;
   background-color: var(--color-dark-white);
+}
+
+/* Testimonial */
+#testimonials {
+  background-color: var(--color-light-white);
+}
+
+.testimonials {
+  margin: 40px;
+}
+
+.testimonial {
+  display: flex;
+  margin: 32px 0;
+}
+
+.testimonial__avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+.testimonial__avatar:nth-child(odd) {
+  margin-right: 40px;
+}
+.testimonial__avatar:nth-child(even) {
+  margin-left: 40px;
+}
+
+.testimonial__speech-bubble {
+  padding: 18px;
+  background-color: var(--color-white);
+  border-radius: var(--size-border-radius);
+}
+.testimonial__speech-bubble p {
+  color: var(--color-light-grey);
+}
+.testimonial__speech-bubble a {
+  color: var(--color-pink);
 }
