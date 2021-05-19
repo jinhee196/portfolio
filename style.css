@@ -95,12 +95,21 @@ p {
 
 /* Navbar */
 #navbar {
+  position: fixed;
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  background-color: var(--color-orange);
+  background-color: transparent;
   align-items: center;
   color: var(--color-white);
   padding: 16px;
+  transition: all var(--animation-duration) ease-in-out;
+  z-index: 10;
+}
+
+#navbar.navbar--dark {
+  background-color: var(--color-orange);
+  padding: 8px;
 }
 
 .navbar__menu {
@@ -143,8 +152,9 @@ p {
 
 /* Home */
 #home {
-  background-color: var(--color-light-orage);
+  background-color: var(--color-orange);
   padding: 40px;
+  padding-top: 120px;
   text-align: center;
 }
 
@@ -161,9 +171,10 @@ p {
   width: 90%;
   margin-top: -20px;
 }
-.home__avatar:hover .home__title,
+.home__avatar:hover,
+.home__title,
 .home__description {
-  color: var(--color-grey);
+  color: var(--color-light-white);
 }
 
 .home__contact {
@@ -173,7 +184,7 @@ p {
   padding: 8px 12px;
   border: 2px solid var(--color-white);
   border-radius: var(--size-border-radius);
-  color: var(--color-grey);
+  color: var(--color-light-white);
 }
 
 /* Section common */
