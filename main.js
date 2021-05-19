@@ -53,4 +53,21 @@ document.addEventListener('scroll', () => {
     // //window.scrollY 가 800일때, 스크롤이 homeHeight밑으로 내려올때,
     //     800/800=1, 1-1=0, opacity = 0(완전투명)
     //     그 이후의 값도 마이너스가 되므로 계속 투명임.
+    
+    upScroll();
+});
+
+//Show "arrow up" button when scrolling down
+const up = document.querySelector('#top');
+function upScroll() {
+    if(window.scrollY > homeHeight / 2) {
+         up.classList.add('visible');
+    } else {
+        up.classList.remove('visible');
+    }
+}
+
+//Handle click on the "arrow up" button
+up.addEventListener('click', () => {
+    scrollIntoView('#home');
 });

@@ -467,6 +467,29 @@ p {
   color: var(--color-dark-orange);
 }
 
+/* Scroll */
+#top {
+  background-color: var(--color-dark-orange);
+  color: var(--color-white);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: fixed;
+  bottom: 100px;
+  right: 30px;
+  text-align: center;
+  font-size: var(--font-medium);
+  line-height: 50px;
+  cursor: pointer;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--animation-duration) ease-in;
+}
+#top.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 @media screen and (max-width: 768px) {
   .navbar__toggle-btn {
     display: block;
