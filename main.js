@@ -37,10 +37,6 @@ contact_btn.addEventListener('click', () => {
     scrollIntoView('#contact');
 });
 
-function scrollIntoView(selector) {
-    const scrollTo = document.querySelector(selector);
-    scrollTo.scrollIntoView({behavior: 'smooth'});
-}
 
 
 // Transparent Home
@@ -114,3 +110,99 @@ workBtnCategories.addEventListener('click', (e) => {
 });
 
 
+const circles = document.querySelectorAll('.circle');
+const homeRect = home.getBoundingClientRect();
+window.addEventListener('load', () => {
+
+    circles.forEach((circle) => {
+        const sizeInt = getRandomInt(10, 150);
+        circle.style.width = `${sizeInt}px`;
+        circle.style.height = `${sizeInt}px`;
+        // const circleRect = circle.getBoundingClientRect();
+        // const coorXInt = getRandomInt(homeRect.width, circleRect.width); 
+        // const coorYInt = getRandomInt(homeRect.height, circleRect.height); 
+        // circle.style.transform = `translate(${coorXInt}px, ${coorYInt}px)`;
+
+        circle.addEventListener('mouseenter', () => {
+            // circle.style.backgroundColor = `rgb(${getRandomInt(0,255)}, ${getRandomInt(0,255)}, ${getRandomInt(0,255)})`
+
+            circle.style.borderColor = `rgb(${getRandomInt(0,255)}, ${getRandomInt(0,255)}, ${getRandomInt(0,255)})`;
+        });
+      
+    });
+});
+
+
+  function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+   }
+
+
+
+
+
+
+
+
+//1.모든 섹션 요소들과 메뉴아이템들을 가지고 온다
+//2. IntersectionObserver를 이용해서 모든 섹션들을 관찰한다.
+//3. 보여지는 섹션에 해당하는 메뉴 아이템을 활성화 시킨다.
+
+
+const sectionIds = ['#home', '#about', '#skills', '#work', '#testimonials', '#contact'];
+ const sections = sectionIds.map(id => document.querySelector(id));
+ const navItems = sectionIds.map(id => document.querySelector(`[data-link="${id}"]`));
+console.log(sections);
+console.log(navItems);
+
+let selectedNavIndex = 0;
+let selectedNavItem = navItems[0];
+function selectNavItem(selected) {
+    selectedNavItem.classList.remove('active');
+    selectedNavItem = selected;
+    selectedNavItem.classList.add('active');
+}
+
+
+function scrollIntoView(selector) {
+    const scrollTo = document.querySelector(selector);
+    scrollTo.scrollIntoView({behavior: 'smooth'});
+    selectNavItem(navItems[sectionIds.indexOf(selector)]);
+}
+
+const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.3,
+}
+const observerCallback = (entries, observer) => {
+    entries.forEach(entry => {
+        console.log(entry.target.id);
+        if(!entry.isIntersecting && entry.intersectionRatio > 0) { //진입하지 않을떄
+            const index = sectionIds.indexOf(`#${entry.target.id}`);
+            // console.log(index);
+     
+            
+            if(entry.boundingClientRect.y < 0) { //스크롤링이 아래로 되어서 페이지가 올라옴
+                selectedNavIndex = index + 1;
+            } else { //y가 플러스일떄,
+                selectedNavIndex = index - 1;
+            }
+          
+        } 
+    });
+};
+const observer = new IntersectionObserver(observerCallback, observerOptions);
+sections.forEach(section => observer.observe(section));
+
+window.addEventListener('wheel', () => {
+    // console.log(window.scrollY);
+    // console.log(window.innerHeight);
+    // console.log(document.body.clientHeight);
+    if(window.scrollY === 0) { //첫번째와 마지막 섹션이 안집히는 것 해결
+        selectedNavIndex = 0;
+    } else if (Math.ceil(window.scrollY + window.innerHeight) >= document.body.clientHeight) {
+        selectedNavIndex = navItems.length - 1; //5
+    }
+    selectNavItem(navItems[selectedNavIndex]);
+});
