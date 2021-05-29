@@ -1,5 +1,7 @@
 'use strict';
 
+
+
 //Make navbar transparent when it is on the top
 const navbar = document.querySelector('#navbar');
 const navbarHeight = navbar.getBoundingClientRect().height;
@@ -42,9 +44,14 @@ contact_btn.addEventListener('click', () => {
 // Transparent Home
 const home = document.querySelector('.home__container');
 const homeHeight = home.getBoundingClientRect().height;
-document.addEventListener('scroll', () => {
-    home.style.opacity = 1 - window.scrollY / homeHeight;
 
+const about = document.querySelector('#about');
+const aboutIcons = document.querySelectorAll('.major__icon');
+const aboutHeight = about.getBoundingClientRect().height;
+
+window.addEventListener('scroll', () => {
+    home.style.opacity = 1 - window.scrollY / homeHeight;
+       //window.scrollY 대신 pageYoffset해도 똑같음...?
     // //window.scrollY 가 0 일때, 즉 스크롤이 안됐을때:
     //     homeHeight이 800이라고 가정하면, 0 / 800 = 0,  1-0 = 1
     //     즉, opacity는 1이 된다.(불투명)
@@ -55,8 +62,13 @@ document.addEventListener('scroll', () => {
     // //window.scrollY 가 800일때, 스크롤이 homeHeight밑으로 내려올때,
     //     800/800=1, 1-1=0, opacity = 0(완전투명)
     //     그 이후의 값도 마이너스가 되므로 계속 투명임.
-    
+    // console.log(window.scrollY, aboutHeight);
+    aboutScroll();
     upScroll();
+    bubbleScroll();
+  
+
+   
 });
 
 //Show "arrow up" button when scrolling down
@@ -69,6 +81,17 @@ function upScroll() {
     }
 }
 
+function aboutScroll() {
+    aboutIcons.forEach((aboutIcon) => {
+        if(window.scrollY >= aboutHeight / 1.4) {
+            aboutIcon.style.opacity = 1;
+            aboutIcon.style.transform = `translateY(0)`;
+        } else {
+            aboutIcon.style.opacity = 0;
+            aboutIcon.style.transform = `translateY(30px)`;
+        }
+    });
+}
 //Handle click on the "arrow up" button
 up.addEventListener('click', () => {
     scrollIntoView('#home');
@@ -149,7 +172,7 @@ window.addEventListener('load', () => {
 //3. 보여지는 섹션에 해당하는 메뉴 아이템을 활성화 시킨다.
 
 
-const sectionIds = ['#home', '#about', '#skills', '#work', '#testimonials', '#contact'];
+const sectionIds = ['#home', '#about', '#skills', '#work',  '#contact'];
  const sections = sectionIds.map(id => document.querySelector(id));
  const navItems = sectionIds.map(id => document.querySelector(`[data-link="${id}"]`));
 console.log(sections);
@@ -161,6 +184,8 @@ function selectNavItem(selected) {
     selectedNavItem.classList.remove('active');
     selectedNavItem = selected;
     selectedNavItem.classList.add('active');
+
+   
 }
 
 
@@ -204,5 +229,130 @@ window.addEventListener('wheel', () => {
     } else if (Math.ceil(window.scrollY + window.innerHeight) >= document.body.clientHeight) {
         selectedNavIndex = navItems.length - 1; //5
     }
+
     selectNavItem(navItems[selectedNavIndex]);
+
 });
+
+
+
+
+const modelViewer = document.querySelector('#whale');
+const work = document.querySelector('#work');
+var throttledFunc = _.throttle(function() {
+	  var player0 = modelViewer.animate([
+        {transform: 'translateX(0)'}
+      ], 8000);
+      player0.addEventListener('finish', function() {
+        modelViewer.style.transform = 'translateX(0)';
+        modelViewer.style.opacity = 1;
+        modelViewer.setAttribute('camera-orbit', '0 0 10m');
+
+        var player1 = modelViewer.animate([
+          
+            {transform: 'translateX(0) translateZ(300px) scale(3)'}
+          ], 8000);
+      
+          player1.addEventListener('finish', function() {
+              modelViewer.style.transform = 'translateX(0) translateZ(300px) scale(3)';
+              modelViewer.setAttribute('camera-orbit', '-115deg 0 10m');
+             
+              var player2 = modelViewer.animate([
+                  {transform: 'translate(2000px, -300px) translateZ(-100px) scale(0.01)'}
+                 ], 10000);
+                  player2.addEventListener('finish', () => {
+                      modelViewer.style.transform = 'translate(2000px, -300px) translateZ(0) scale(0.01)';
+                      modelViewer.style.display = 'none';
+                  });
+          });
+      });
+  
+      
+        
+        textMotion();
+        scrollAuto();
+        bottomScale();
+        fish();
+
+});
+
+
+work.addEventListener('wheel', throttledFunc, {once: true});
+
+
+
+
+
+var bubbleBg = document.querySelector(".bubbleBg");
+var title = document.querySelector(".title");
+var subtitle = document.querySelector(".subtitle");
+
+function bubbleScroll() {
+   
+    if(window.scrollY >= work.offsetTop) {
+        var scroll = window.scrollY - work.offsetTop; //초기화 (0)
+        console.log(scroll);
+        bubbleBg.style.transform = "translateY("+ -scroll/3 +"px)"; //33씩 이동 
+        title.style.transform = "translateY("+ scroll/1.7 +"px)"; //58px씩 이동
+        subtitle.style.transform = "translateY("+ scroll/1.7 +"px)"; //58px씩 이동
+        // title이 더 빨리 움직임.
+    } 
+}
+
+
+
+
+
+
+
+
+
+
+function textMotion() {
+ //텍스트 모션
+ for(var i=0; i < title.querySelectorAll('span').length; i++){
+        
+    var _text = title.querySelectorAll('span')[i];
+    TweenMax.from( _text , 1, {
+        autoAlpha:0,
+        scale:4,
+        // rotate: Math.random()*360,
+        delay : Math.random()*1,
+        ease:Power3.easeInOut 
+    });
+}
+title.style.opacity = 1;
+subtitle.style.opacity = 1;
+}
+
+function scrollAuto() {
+    //스크롤 자동이동
+    const bottom = document.querySelector('.bottom');
+    const bottomY = bottom.offsetTop;
+    const parent = bottom.offsetParent.offsetTop - 87; //navbar height 빼기
+TweenMax.to( window, 2, {
+    scrollTo:{
+        y: parent + bottomY,
+        // autoKill: true
+    }, 
+    delay : 2,
+    ease:Power4.easeInOut 
+});
+}
+
+function bottomScale() {
+//하단 영역 커지는 것
+TweenMax.from( ".bottom", 2.5, {
+    scale : .4,
+    y:100,
+    delay : 2.4,
+    ease:Power3.easeInOut 
+});
+}
+
+function fish() {
+    const fish1 = document.querySelector('.sea-fish');
+    const fish2 = document.querySelector('.sea-fish3');
+    fish1.style.transform = `translateX(-2000px)`;
+    fish2.style.transform = `translateX(-2000px)`;
+}
