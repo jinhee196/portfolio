@@ -104,7 +104,6 @@ p {
   font-weight: var(--weight-regular);
   color: var(--color-dark-white);
   margin: 4px 0;
-  line-height: 1.7;
 }
 
 /* Navbar */
