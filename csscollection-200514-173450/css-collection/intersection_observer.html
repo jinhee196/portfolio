@@ -48,7 +48,7 @@
       const boxes = document.querySelectorAll('.box');
       const callback = (entries, observer) => {
         entries.forEach(entry => {
-            if(entry.isIntersecting) {
+            if(entry.isIntersecting) { //들어오는 중이면
                  console.log(entry.target);
                  entry.target.classList.add('active');
             } else {
@@ -65,7 +65,7 @@
       const observer = new IntersectionObserver(callback, options);
       
       boxes.forEach(box => observer.observe(box));
-      //관찰자가 관찰하도록 명령해놓은 상태
+      //관찰자가 box를 관찰하도록 명령해놓은 상태
     </script>
   </body>
 </html>
