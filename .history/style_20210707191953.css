@@ -763,11 +763,12 @@ model-viewer {
   justify-content: center;
   align-items: center;
 }
+.contactBox {
+}
 
 .notion {
   width: 40px;
   margin-left: 0.8em;
-  margin-top: 7px;
   transition: all 250ms ease-in;
 }
 .notion img {

@@ -758,23 +758,27 @@ model-viewer {
 }
 
 .contact__links {
+  font-size: var(--font-medium);
   margin: 24px 0;
+}
+.contactBox {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
+.contactBox a {
+  display: block;
+  width: 35px;
+}
 .notion {
-  width: 40px;
-  margin-left: 0.8em;
-  margin-top: 7px;
+  margin-left: 0.5em;
   transition: all 250ms ease-in;
 }
 .notion img {
   width: 100%;
 }
 .contact__links i {
-  font-size: 35px;
+  width: 100%;
   transition: all 250ms ease-in;
 }
 .contact__links i:hover,

@@ -767,7 +767,7 @@ model-viewer {
 .notion {
   width: 40px;
   margin-left: 0.8em;
-  margin-top: 7px;
+  margin-top: 10px;
   transition: all 250ms ease-in;
 }
 .notion img {

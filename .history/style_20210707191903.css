@@ -759,6 +759,8 @@ model-viewer {
 
 .contact__links {
   margin: 24px 0;
+}
+.contactBox {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -767,7 +769,6 @@ model-viewer {
 .notion {
   width: 40px;
   margin-left: 0.8em;
-  margin-top: 7px;
   transition: all 250ms ease-in;
 }
 .notion img {

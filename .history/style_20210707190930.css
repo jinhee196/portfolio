@@ -759,15 +759,16 @@ model-viewer {
 
 .contact__links {
   margin: 24px 0;
+}
+.contactBox {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .notion {
-  width: 40px;
+  width: 35px;
   margin-left: 0.8em;
-  margin-top: 7px;
   transition: all 250ms ease-in;
 }
 .notion img {

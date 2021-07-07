@@ -104,6 +104,7 @@ p {
   font-weight: var(--weight-regular);
   color: var(--color-dark-white);
   margin: 4px 0;
+  line-height: 1.7;
 }
 
 /* Navbar */
@@ -715,6 +716,16 @@ model-viewer {
   animation-timing-function: linear;
   z-index: -1;
 }
+.contactBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.notion {
+  width: 35px;
+  margin-left: 0.5em;
+}
+
 .Lfish {
   width: 200px;
 }

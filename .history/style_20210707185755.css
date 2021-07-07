@@ -716,6 +716,15 @@ model-viewer {
   animation-timing-function: linear;
   z-index: -1;
 }
+.contactBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.notion {
+  width: 35px;
+  margin-left: 0.3em;
+}
 
 .Lfish {
   width: 200px;
@@ -758,28 +767,15 @@ model-viewer {
 }
 
 .contact__links {
+  font-size: var(--font-medium);
   margin: 24px 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.notion {
-  width: 40px;
-  margin-left: 0.8em;
-  margin-top: 7px;
-  transition: all 250ms ease-in;
-}
-.notion img {
-  width: 100%;
 }
 .contact__links i {
-  font-size: 35px;
-  transition: all 250ms ease-in;
+  transition: all 300ms ease-in;
 }
-.contact__links i:hover,
-.notion:hover {
-  transform: scale(1.15);
+.contact__links i:hover {
+  transform: scale(1.2);
+  color: var(--color-dark-blue);
 }
 
 /* Scroll */
