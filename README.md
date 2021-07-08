@@ -1,7 +1,7 @@
 # PORTFOLIO
 
-![portfolio-0](https://user-images.githubusercontent.com/84313420/124918268-d06fba80-e02f-11eb-9f68-0e208dd6f285.PNG)
-![portfolio](https://user-images.githubusercontent.com/84313420/124918202-bb932700-e02f-11eb-98ec-738fe8408db4.PNG)
+![portfolio](https://user-images.githubusercontent.com/84313420/124919143-d5813980-e030-11eb-8864-c93a48894721.png)
+
 
 ### 1. 프로젝트의 목적 및 용도
 
